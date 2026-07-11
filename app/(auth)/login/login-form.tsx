@@ -47,9 +47,9 @@ export function LoginForm() {
   }
 
   return (
-    <Card className="w-full max-w-sm">
+    <Card className="w-full justify-center rounded-none border-y-0 bg-card/90">
       <CardHeader>
-        <CardTitle>CAFI Admin Portal</CardTitle>
+        <CardTitle className="text-xl font-bold">CAFI Admin Portal</CardTitle>
         <CardDescription>
           Sign in with your administrator account
         </CardDescription>
@@ -63,6 +63,7 @@ export function LoginForm() {
               type="email"
               autoComplete="email"
               required
+              className="border-muted-foreground/60"
               value={email}
               onChange={(event) => setEmail(event.target.value)}
             />
@@ -74,6 +75,7 @@ export function LoginForm() {
               type="password"
               autoComplete="current-password"
               required
+              className="border-muted-foreground/60"
               value={password}
               onChange={(event) => setPassword(event.target.value)}
             />

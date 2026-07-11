@@ -1,11 +1,24 @@
+import Image from "next/image";
+import loginBg from "@/public/images/login-bg.jpg";
+
 export default function AuthLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <main className="flex min-h-screen items-center justify-center bg-muted/40 p-4">
-      {children}
+    <main className="relative flex min-h-screen justify-center md:justify-start md:pl-[100px]">
+      <Image
+        src={loginBg}
+        alt=""
+        fill
+        priority
+        className="object-cover"
+      />
+      <div className="absolute inset-0 bg-black/10" />
+      <div className="relative flex w-full min-w-[200px] max-w-sm">
+        {children}
+      </div>
     </main>
   );
 }
