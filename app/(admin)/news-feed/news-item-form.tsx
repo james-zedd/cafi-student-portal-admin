@@ -49,7 +49,7 @@ export function NewsItemForm({
     },
     onSuccess: async () => {
       await queryClient.invalidateQueries({ queryKey: ["news"] });
-      router.push("/dashboard/news-feed");
+      router.push("/news-feed");
     },
   });
 
@@ -99,7 +99,7 @@ export function NewsItemForm({
         <Button
           type="button"
           variant="outline"
-          onClick={() => router.push("/dashboard/news-feed")}
+          onClick={() => router.push("/news-feed")}
         >
           Cancel
         </Button>

@@ -6,6 +6,7 @@ import { api } from "@/lib/api-client";
 import { Button } from "@/components/ui/button";
 import {
   Card,
+  CardAction,
   CardContent,
   CardDescription,
   CardFooter,
@@ -52,10 +53,12 @@ export function NewsList() {
       {data.map((item) => (
         <Card key={item._id}>
           <CardHeader>
-            <CardTitle>{newsTitle(item)}</CardTitle>
-            <CardDescription>
-              {item.publisher.name} · {formatDate(item.updatedAt)}
-            </CardDescription>
+            <CardTitle className="pr-8">{newsTitle(item)}</CardTitle>
+            <CardDescription>Published by: {item.publisher.name}</CardDescription>
+            <CardAction className="text-right text-xs text-muted-foreground pt-1">
+              <p>Date Created: {formatDate(item.createdAt)}</p>
+              <p>Last Updated: {formatDate(item.updatedAt)}</p>
+            </CardAction>
           </CardHeader>
           <CardContent>
             <p className="whitespace-pre-wrap">{truncate(item.body, 200)}</p>
@@ -64,7 +67,7 @@ export function NewsList() {
             <Button
               variant="outline"
               size="sm"
-              render={<Link href={`/dashboard/news-feed/${item._id}/edit`} />}
+              render={<Link href={`/news-feed/${item._id}/edit`} />}
             >
               Edit
             </Button>
