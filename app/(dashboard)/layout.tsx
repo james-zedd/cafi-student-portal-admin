@@ -3,7 +3,8 @@ import { LogoutButton } from "@/components/logout-button";
 
 const navigation = [
   { name: "Dashboard", href: "/dashboard" },
-  { name: "Students", href: "/dashboard/students" },
+  { name: "Dan Koto Shitsumon", href: "/dashboard/dan-koto-shitsumon" },
+  { name: "News Feed", href: "/dashboard/news-feed" },
 ];
 
 export default function DashboardLayout({
