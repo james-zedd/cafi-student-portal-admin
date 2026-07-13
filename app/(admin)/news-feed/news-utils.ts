@@ -1,8 +1,7 @@
 import type { NewsItem } from "@/lib/types/news";
+import { truncate } from "@/lib/utils";
 
-export function truncate(text: string, maxLength: number): string {
-  return text.length > maxLength ? `${text.slice(0, maxLength)}…` : text;
-}
+export { truncate };
 
 export function newsTitle(item: NewsItem): string {
   if (item.title?.trim()) {
