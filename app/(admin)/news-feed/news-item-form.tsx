@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { toast } from "sonner";
 import { api } from "@/lib/api-client";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -49,7 +50,11 @@ export function NewsItemForm({
     },
     onSuccess: async () => {
       await queryClient.invalidateQueries({ queryKey: ["news"] });
+      toast.success(mode === "add" ? "News item added" : "News item updated");
       router.push("/news-feed");
+    },
+    onError: (error) => {
+      toast.error(`Failed to save news item: ${error.message}`);
     },
   });
 
@@ -90,11 +95,6 @@ export function NewsItemForm({
         />
         <Label htmlFor="visible">Is Visible</Label>
       </div>
-      {mutation.isError && (
-        <p className="text-sm text-destructive">
-          Failed to save news item: {mutation.error.message}
-        </p>
-      )}
       <div className="flex justify-between">
         <Button
           type="button"

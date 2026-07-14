@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { api } from "@/lib/api-client";
-import { Checkbox } from "@/components/ui/checkbox";
+import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
   Table,
@@ -15,12 +15,16 @@ import {
 } from "@/components/ui/table";
 import type { KotoShitsumonItem } from "@/lib/types/koto-shitsumon";
 import { truncate } from "@/lib/utils";
+import { DeleteQuestionButton } from "./delete-question-button";
+import { EditQuestionDialog } from "./edit-question-dialog";
 
 const MAX_CELL_LENGTH = 100;
 
 export function QuestionList() {
-  const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
   const [query, setQuery] = useState("");
+  const [editingItem, setEditingItem] = useState<KotoShitsumonItem | null>(
+    null,
+  );
 
   const { data, isPending, isError, error } = useQuery({
     queryKey: ["kotoshitsumon"],
@@ -31,18 +35,6 @@ export function QuestionList() {
       return response.data;
     },
   });
-
-  function toggleSelected(id: string, checked: boolean) {
-    setSelectedIds((previous) => {
-      const next = new Set(previous);
-      if (checked) {
-        next.add(id);
-      } else {
-        next.delete(id);
-      }
-      return next;
-    });
-  }
 
   if (isPending) {
     return <p className="text-muted-foreground">Loading questions…</p>;
@@ -89,30 +81,17 @@ export function QuestionList() {
         <Table>
           <TableHeader>
             <TableRow className="bg-muted">
-              <TableHead className="w-8" />
               <TableHead>Question</TableHead>
               <TableHead>Categories</TableHead>
               <TableHead>Correct Answer</TableHead>
               <TableHead>Explanation</TableHead>
               <TableHead>Answers</TableHead>
+              <TableHead className="w-0">Actions</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
             {filteredData.map((item) => (
-              <TableRow
-                key={item.id}
-                className="even:bg-muted/50"
-                data-state={selectedIds.has(item.id) ? "selected" : undefined}
-              >
-                <TableCell>
-                  <Checkbox
-                    aria-label={`Select question: ${truncate(item.question, 40)}`}
-                    checked={selectedIds.has(item.id)}
-                    onCheckedChange={(checked) =>
-                      toggleSelected(item.id, checked === true)
-                    }
-                  />
-                </TableCell>
+              <TableRow key={item.id} className="even:bg-muted/50">
                 <TableCell className="whitespace-normal align-top">
                   {truncate(item.question, MAX_CELL_LENGTH)}
                 </TableCell>
@@ -128,11 +107,28 @@ export function QuestionList() {
                 <TableCell className="whitespace-normal align-top">
                   {truncate(item.answers.join(", "), MAX_CELL_LENGTH)}
                 </TableCell>
+                <TableCell className="align-top">
+                  <div className="flex gap-2">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      aria-label={`Edit question: ${truncate(item.question, 40)}`}
+                      onClick={() => setEditingItem(item)}
+                    >
+                      Edit
+                    </Button>
+                    <DeleteQuestionButton item={item} />
+                  </div>
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>
         </Table>
       )}
+      <EditQuestionDialog
+        item={editingItem}
+        onClose={() => setEditingItem(null)}
+      />
     </div>
   );
 }
