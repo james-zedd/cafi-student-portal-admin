@@ -63,7 +63,7 @@ export function NewsList() {
           <CardContent>
             <p className="whitespace-pre-wrap">{truncate(item.body, 200)}</p>
           </CardContent>
-          <CardFooter className="mt-auto justify-between">
+          <CardFooter className="mt-auto justify-end gap-2">
             <Button
               variant="outline"
               size="sm"
