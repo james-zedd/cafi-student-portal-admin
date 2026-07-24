@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { AUTH_COOKIE } from "@/lib/constants";
 
-const protectedPaths = ["/dashboard", "/dan-koto-shitsumon", "/news-feed"];
+const protectedPaths = ["/dashboard", "/dan-koto-shitsumon", "/news-feed", "/exams"];
 
 export default function proxy(request: NextRequest) {
   const isAuthenticated = request.cookies.has(AUTH_COOKIE);
@@ -24,6 +24,7 @@ export const config = {
     "/dashboard/:path*",
     "/dan-koto-shitsumon/:path*",
     "/news-feed/:path*",
+    "/exams/:path*",
     "/login",
   ],
 };
