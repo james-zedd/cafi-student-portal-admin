@@ -6,6 +6,7 @@ const navigation = [
   { name: "Dan Koto Shitsumon", href: "/dan-koto-shitsumon" },
   { name: "News Feed", href: "/news-feed" },
   { name: "Exams", href: "/exams" },
+  { name: "Users", href: "/users" },
 ];
 
 export default function AdminLayout({

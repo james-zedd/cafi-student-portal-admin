@@ -7,7 +7,7 @@ export default function NewsFeedPage() {
     <div>
       <div className="flex items-center justify-between">
         <h1 className="text-2xl font-semibold">News Feed</h1>
-        <Button render={<Link href="/news-feed/new" />}>
+        <Button nativeButton={false} render={<Link href="/news-feed/new" />}>
           Add News Item
         </Button>
       </div>

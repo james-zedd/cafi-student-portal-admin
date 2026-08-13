@@ -67,6 +67,7 @@ export function NewsList() {
             <Button
               variant="outline"
               size="sm"
+              nativeButton={false}
               render={<Link href={`/news-feed/${item._id}/edit`} />}
             >
               Edit
