@@ -6,6 +6,7 @@ const LOGIN_PATH = "/api/auth";
 
 export async function POST(request: Request) {
   const backendUrl = process.env.BACKEND_API_URL;
+  console.log("Backend URL:", backendUrl); // Log the backend URL for debugging
   if (!backendUrl) {
     return NextResponse.json(
       { error: "BACKEND_API_URL is not configured" },

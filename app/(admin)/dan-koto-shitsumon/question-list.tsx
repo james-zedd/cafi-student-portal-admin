@@ -91,7 +91,7 @@ export function QuestionList() {
           </TableHeader>
           <TableBody>
             {filteredData.map((item) => (
-              <TableRow key={item.id} className="even:bg-muted/50">
+              <TableRow key={item.id} className="even:bg-chart-1/50">
                 <TableCell className="whitespace-normal align-top">
                   {truncate(item.question, MAX_CELL_LENGTH)}
                 </TableCell>

@@ -49,7 +49,7 @@ export function NewsList() {
   }
 
   return (
-    <div className="grid gap-4 md:grid-cols-2">
+    <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
       {data.map((item) => (
         <Card key={item._id}>
           <CardHeader>

@@ -47,7 +47,7 @@ export function LoginForm() {
   }
 
   return (
-    <Card className="w-full justify-center rounded-none border-y-0 bg-card/90">
+    <Card className="w-full justify-center rounded-none border-y-0 border-transparent bg-card/90">
       <CardHeader>
         <CardTitle className="text-xl font-bold">CAFI Admin Portal</CardTitle>
         <CardDescription>

@@ -75,7 +75,7 @@ export function UserList() {
           </TableHeader>
           <TableBody>
             {filteredData.map((user) => (
-              <TableRow key={user.id} className="even:bg-muted/50">
+              <TableRow key={user.id} className="even:bg-chart-1/50">
                 <TableCell className="whitespace-normal align-top">
                   {user.name}
                 </TableCell>

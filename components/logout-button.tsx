@@ -13,7 +13,7 @@ export function LogoutButton() {
   }
 
   return (
-    <Button variant="outline" size="sm" onClick={handleLogout}>
+    <Button variant="outline" size="sm" className="border border-zinc-400" onClick={handleLogout}>
       Sign out
     </Button>
   );
