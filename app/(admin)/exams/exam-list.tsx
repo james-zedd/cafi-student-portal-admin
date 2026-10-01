@@ -25,6 +25,15 @@ function sortExams(exams: Exam[]): Exam[] {
   });
 }
 
+// Mirrors the traditional white / brown / black progression:
+// 9K–4K white, 3K–1K dark gray, dan ranks black.
+function rankBadgeClassName(exam: Exam): string | undefined {
+  if (exam.isDanExam) return undefined;
+  const kyu = parseInt(exam.examId, 10);
+  if (kyu <= 3) return "bg-stone-500 text-zinc-100";
+  return "border-zinc-400 bg-background text-foreground";
+}
+
 export function ExamList() {
   const { data, isPending, isError, error } = useQuery({
     queryKey: ["exams"],
@@ -59,13 +68,21 @@ export function ExamList() {
               <CardTitle>{exam.name.belt}</CardTitle>
               <CardDescription>{exam.name.rankEng}</CardDescription>
               <CardAction>
-                <Badge variant="outline">{exam.examId}</Badge>
+                <Badge className={rankBadgeClassName(exam)}>
+                  {exam.examId}
+                </Badge>
               </CardAction>
             </CardHeader>
             <CardContent className="flex flex-wrap items-center gap-2">
-              {exam.isDanExam && <Badge variant="secondary">Dan Exam</Badge>}
+              {exam.isDanExam && (
+                <Badge variant="outline" className="border-zinc-400 bg-background">
+                  Dan Exam
+                </Badge>
+              )}
               {exam.isAdultExam && (
-                <Badge variant="secondary">Adult Exam</Badge>
+                <Badge variant="outline" className="border-zinc-400 bg-background">
+                  Adult Exam
+                </Badge>
               )}
               <span className="text-sm text-muted-foreground">
                 {exam.techniques.length} technique
