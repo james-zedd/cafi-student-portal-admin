@@ -104,21 +104,20 @@ export function ExamDetail({ id }: { id: string }) {
                         {technique.name.romanji}
                       </CardDescription>
                     </CardHeader>
-                    {technique.hasVariants &&
-                      technique.variants.length > 0 && (
-                        <CardContent>
-                          <ul className="grid gap-2 sm:grid-cols-2">
-                            {technique.variants.map((variant, index) => (
-                              <li
-                                key={index}
-                                className="rounded-md bg-muted/50 px-3 py-2 text-sm"
-                              >
-                                {variantLabel(variant)}
-                              </li>
-                            ))}
-                          </ul>
-                        </CardContent>
-                      )}
+                    {technique.variants.length > 0 && (
+                      <CardContent>
+                        <ul className="grid gap-2 md:grid-cols-2 lg:grid-cols-3">
+                          {technique.variants.map((variant, index) => (
+                            <li
+                              key={index}
+                              className="rounded-md bg-muted/50 px-3 py-2 text-sm"
+                            >
+                              {variantLabel(variant)}
+                            </li>
+                          ))}
+                        </ul>
+                      </CardContent>
+                    )}
                   </Card>
                 ))}
               </div>
