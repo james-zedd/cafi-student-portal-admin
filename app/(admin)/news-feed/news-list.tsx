@@ -53,9 +53,9 @@ export function NewsList() {
       {data.map((item) => (
         <Card key={item._id}>
           <CardHeader>
-            <CardTitle className="pr-8">{newsTitle(item)}</CardTitle>
-            <CardDescription>Published by: {item.publisher.name}</CardDescription>
-            <CardAction className="text-right text-xs text-muted-foreground pt-1">
+            <CardTitle className="col-start-1 md:pr-8">{newsTitle(item)}</CardTitle>
+            <CardDescription className="col-start-1">Published by: {item.publisher.name}</CardDescription>
+            <CardAction className="hidden pt-1 text-right text-xs text-muted-foreground md:block">
               <p>Date Created: {formatDate(item.createdAt)}</p>
               <p>Last Updated: {formatDate(item.updatedAt)}</p>
             </CardAction>
